@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template inherit_id='portal.portal_my_home' id="om_hospital_portal">
+        <xpath expr='//div[hasclass("o_portal_docs")]' position='inside'>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="url">/my/registerPatient</t>
+                <t t-set="title">Register</t>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="url">/my/hospitals</t>
+                <t t-set="title">Hospital</t>
+                <t t-set="placeholder_count" t-value="'patients_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_om_hospital" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'patient_list'" t-attf-class="breadcrumb-item active">
+                Hospital
+            </li>
+            <li t-if="page_name == 'patient_detail_form'" t-attf-class="breadcrumb-item active">
+                <a t-attf-href="/my/hospitals">patient</a>
+                /
+                <t t-out="patient.name"/>
+            </li>
+            <li t-if="page_name == 'patient_register_form'" t-attf-class="breadcrumb-item active">
+                Register
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_om_hospital_list" name="My Hospital Patients">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Patients</t>
+            </t>
+            <t t-if="patients" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Patient Name #</span>
+                            <span class='d-block d-md-none'>Nick Name.</span>
+                        </th>
+                        <th>
+                            Photo
+                        </th>
+                        <th class="text-end">Age</th>
+                        <th class="text-center"/>
+                        <th class="text-end">Gender</th>
+                    </tr>
+                </thead>
+                <t t-foreach="patients" t-as="patient">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/hospitals/#{patient.id}">
+                                <t t-out="patient.name"/>
+                            </a>
+                        </td>
+                        <td>
+                            <img t-if="patient.image" width="60" border="1"
+                                 class="rounded-circle img-fluid text-center"
+                                 t-att-src="image_data_uri(patient.image)"/>
+                            <img t-if="not patient.image" width="60" border="1"
+                                 class="rounded-circle img-fluid"
+                                 t-att-src="'/web/static/img/placeholder.png'"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="patient.age"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="patient.age"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="patient.gender"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no orders for your account.</p>
+        </t>
+    </template>
+
+    <template id="portal_om_hospital_detail_form" name="Patient Portal Template" inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'patient_detail_form'">
+                <t t-if="patient">
+                    <h1>Hello :
+                        <t t-out="patient.name"/>
+                    </h1>
+                    <p>
+                        -you age is
+                        <t t-out="patient.age"/>
+                    </p>
+                    <div id="Patient_chatter" class="container py-5">
+                        <h1>Chatter feature</h1>
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="patient"/>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">No record</t>
+            </t>
+
+        </xpath>
+    </template>
+
+
+    <template id="portal_om_hospital_register_form" name="Register Patient Portal Template"
+              inherit_id="portal.portal_sidebar">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-if="page_name == 'patient_register_form'">
+                <t t-if="error_msg">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="myAlert">
+                        <strong>Warning!</strong>,
+                        <t t-out="error_msg"/>
+                    </div>
+                </t>
+                <t t-if="success_msg">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="myAlert">
+                        <t t-out="success_msg"/>
+                    </div>
+                </t>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none" id="myAlert_to_side_client" >
+                        <strong>Warning!</strong>,
+<!--                        <t t-out="error_msg"/>-->
+                    </div>
+                <div id="patient_create_from">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reference">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                           placeholder="Enter phone"/>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="text" class="form-control" id="age" name="age" placeholder="Enter age"/>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="marital_state">Marital State</label>
+                                        <br/>
+                                        <select name="marital_state" id="marital_state">
+                                            <option value="">What is your marital state?</option>
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                        </select>
+                                    </div>
+                                    <div class="col=md-6 form-group">
+                                        <label for="tag">Tags</label>
+                                        <br/>
+                                        <select name="tag_id" id="tag_id">
+                                            <t t-foreach="tags" t-as="tag">
+                                                <option t-att-value="tag.id">
+                                                    <t t-esc="tag.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+
+</odoo>

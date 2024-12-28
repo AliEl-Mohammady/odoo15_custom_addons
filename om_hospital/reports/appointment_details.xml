@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_patient_wizard">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <center>
+                        <!--                        <div class="text_center">-->
+                        <h2>Appointment Details</h2>
+                        <!--                        </div>-->
+                    </center>
+                    <br/>
+                    <br/>
+                    <table>
+                        <tr>
+                            <td>
+                                <h4>Patient</h4>
+                            </td>
+                            <td><h4>:</h4></td>
+                            <td>
+<!--                                <t t-if="form.get('appointment_id')">-->
+<!--                                    <h5><t t-esc="form['appointment_id'][1]"/></h5>-->
+<!--                                </t>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Cancellation Date</h4></td>
+                            <td><h4>:</h4></td>
+                            <td>
+                                <t t-if="form.get('date_cancelled')">
+                                    <h5><t t-esc="form['date_cancelled']"/></h5>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4>Reason</h4></td>
+                            <td><h4>:</h4></td>
+                            <td>
+                                <t t-if="form.get('reason')">
+                                    <h5><t t-esc="form['reason']"/></h5>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <br/>
+                    <table class="table table-bordered mt32">
+                        <thead>
+                            <tr>
+                                <th name="th_slno" class="text-left">
+                                    <span>SNO.</span>
+                                </th>
+                                <th name="th_patient_id" class="text-left">
+                                    <span>Patient ID</span>
+                                </th>
+                                <th name="th_ref" class="text-left">
+                                    <span>Reference</span>
+                                </th>
+                                <th name="th_booking_date" class="text-left">
+                                    <span>Booking Date</span>
+                                </th>
+                                <th name="th_company" class="text-left">
+                                    <span>Company ID</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <t t-set="appointment_count" t-value="0"/>
+                        <t t-foreach="appointment_list" t-as="app">
+                            <t t-set="appointment_count" t-value="appointment_count + 1"/>
+                            <tr>
+                                <td>
+                                    <span t-esc="appointment_count"/>
+                                </td>
+                                <td>
+                                    <span t-esc="app['patient_id']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="app['ref']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="app['booking_date']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="app['company_id']"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td >
+                                <strong>Total Appointments</strong>
+                            </td>
+                            <td colspan="4" style="text-align:center; font-weight:bold">
+                                <span t-esc="appointment_count"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+

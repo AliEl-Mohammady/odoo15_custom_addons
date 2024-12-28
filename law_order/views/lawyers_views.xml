@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_lawyers_form" model="ir.ui.view">
+        <field name="name">lawyers.view.form</field>
+        <field name="model">lawyers</field>
+        <field name="arch" type="xml">
+            <form string="Lawyers Total Details">
+                <sheet>
+                    <button name="read_group_method" string="Read Method" type="object" class="oe_highlight"/>
+                    <field name="field05" widget="image" class="oe_avatar"/>
+                    <group>
+                        <field name="name" string="Lawyer Name"/>
+                        <field name="new_field"/>
+                        <field name="field01"/>
+                        <field name="field02" widget="radio"/>
+                        <field name="field03"/>
+                        <field name="field04"/>
+                        <field name="field06"/>
+                        <field name="birthday"/>
+                        <field name="time"/>
+                        <field name="age"/>
+                        <!--                        <field name="customer_id"/>-->
+                        <!--                        <field name="customer_ids"/>-->
+                        <field name="customers_ids" widget="many2many_tags"/>
+                        <field name="user"/>
+                        <field name="price"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="reference"/>
+                        <field name="appointment_count"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_lawyers_tree" model="ir.ui.view">
+        <field name="name">lawyers.view.tree</field>
+        <field name="model">lawyers</field>
+        <field name="arch" type="xml">
+            <tree string="Lawyers Total Details" export_xlsx="0">
+                <field name="id"/>
+                <field name="name" string="Lawyer Name" widget="badge"/>
+                <field name="price"/>
+                <field name="age"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_lawyers_view" model="ir.actions.act_window">
+        <field name="name">lawyers</field>
+        <field name="res_model">lawyers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first patient!
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="law_root_menu"
+            name="Law and Order"
+            sequence="1"/>
+
+    <menuitem
+            id="lawyers_main_menu"
+            name="Lawyers"
+            parent="law_root_menu"
+            sequence="1"/>
+
+    <menuitem
+            id="all_lawyers_menu"
+            name="All Lawyers"
+            parent="lawyers_main_menu"
+            sequence="1"
+            action="action_lawyers_view"/>
+
+</odoo>
+
+        <!--&lt;!&ndash;                     <div name="button_box" class="oe_button_box">&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <button class="oe_stat_button" type="object" name="action_view_appointments" icon="fa-star">&ndash;&gt;-->
+        <!--                      <div name="button_box" >-->
+        <!--                            <button class="oe_highlight" type="object" name="action_view_appointments" icon="fa-star">-->
+        <!--                                <field string="Appointments" name="appointment_count" widget="statinfo"/>Appointments-->
+        <!--                            </button>-->
+        <!--                            <button class="oe_highlight" type="object" name="print_report" string="Print">-->
+        <!--                            </button>-->
+        <!--                    </div>-->
+        <!--                    <br></br>-->
+        <!--                    <div class="alert alert-info text-center o_form_header" role="alert"-->
+        <!--                         attrs="{'invisible': [('is_birthday', '=', False)]}">-->
+        <!--                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>-->
+        <!--                        <div>-->
+        <!--                            <strong>Today is your Birthday</strong>-->
+        <!--                        </div>-->
+        <!--                        <div>-->
+        <!--                            <div>-->
+        <!--                                Happy birthday<field name="name" readonly="1"/>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+
+        <!--                    <field name="image" widget="image" class="oe_avatar"/>-->
+        <!--                    <div class="oe_title">-->
+        <!--                        <h4>-->
+        <!--                            <field name="reference" readonly="1"/>-->
+        <!--                        </h4>-->
+        <!--                        <h1>-->
+        <!--                            <label for="name" string="Name of patient" class="oe_edit_only"/>-->
+        <!--                            <field name="name"/>-->
+        <!--                        </h1>-->
+        <!--                    </div>-->
+        <!--                    <group>-->
+        <!--                        <group>-->
+        <!--                            <field name="date_of_birth"/>-->
+        <!--                            <field name="age"/>-->
+        <!--                        </group>-->
+        <!--                        <group>-->
+        <!--                            <field name="gender" invisible="context.get('hide_gender')" widget="radio"/>-->
+        <!--                            <field name="active" invisible="1"/>-->
+        <!--                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>-->
+        <!--                            &lt;!&ndash;                            <field name="tag_ids" widget="many2many_checkboxes" options="{'color_field': 'color'}"/>&ndash;&gt;-->
+        <!--                            <field name="appointment_count"/>-->
+        <!--                            <field name="is_birthday" invisible="1"/>-->
+        <!--                        </group>-->
+        <!--                    </group>-->
+        <!--                    <group string="other Information" name="other_info">-->
+        <!--                        <group>-->
+        <!--                            <field name="parent" attrs="{'invisible': [('age','&gt;=',18)]}"/>-->
+        <!--                            <field name="marital_state" attrs="{'readonly': [('age','=','18')]}"/>-->
+        <!--                            <field name="parent_name" attrs="{'required': [('marital_state','=','married')]}"/>-->
+        <!--                        </group>-->
+        <!--                        <group>-->
+        <!--                            <field name="phone" widget="phone"/>-->
+        <!--                            <field name="email" widget="email"/>-->
+        <!--                            <field name="website" widget="url"/>-->
+
+        <!--                        </group>-->

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_patient">
+<!--        <t t-call="web.basic_layout">-->
+            <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div class="col-xl-2" style="margin:auto;"><h1><span t-field="o.reference"/></h1>
+                        </div>
+                        <br></br>
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <table width="90%" style="border:3px solid black !important;">
+                                <tr>
+                                    <td width="30%">
+                                        <div style="text-align:left padding-top 10px;">
+                                            <img t-if="o.image" width="120" border="1"
+                                                 class="round-circle"
+                                                 t-att-src="image_data_uri(o.image)"/>
+                                            <img t-if="not o.image" width="120" border="1"
+                                                 class="round-circle"
+                                                 t-att-src="'/web/static/img/placeholder.png'"/>
+                                        </div>
+                                        <div style="padding 10px;">
+                                            <h2>
+                                                <strong>
+                                                    <span t-field="o.name"/>
+                                                </strong>
+                                            </h2>
+                                        </div>
+                                        <div style="padding:0; margin:0px; padding-top:10px; padding-bottom:10px; text-align:center;">
+<!--                                            <img t-att-src="'/report/barcode/QR/'+o.name" style="width:200px;height:75px" alt="Barcode"/>-->
+                                            <img t-att-src="'/report/barcode/Code128/'+o.name" style="width:200px;height:75px" alt="Barcode"/>
+<!--                                            <div t-if="o.name" t-field="o.name" t-options="{'widget': 'barcode', 'width': 200, 'height': 75, 'img_style': 'max-height:50pt;max-width:100%;', 'img_align': 'center'}"/>-->
+                                        </div>
+                                    </td>
+                                    <td width="30%">
+                                        <td width="40%">
+                                            <p>
+                                                <strong>Age:</strong>
+                                            </p>
+                                            <p style="text-align:left;">
+                                                <strong>Group:</strong>
+                                            </p>
+                                            <p style="text-align:left;">
+                                                <strong>Phone no:</strong>
+                                            </p>
+                                        </td>
+                                        <td width="60%">
+                                            <p style="text-align:left;" t-field="o.age"/>
+                                            <p style="text-align:left;padding-left:10px;" t-field="o.name"/>
+                                            <p style="text-align:left;padding-left:10px;" t-field="o.phone"/>
+                                        </td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+
+                            <table width="90%" style="border:3px solid black !important;">
+                                <t t-foreach="appointment_list" t-as="app">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="app['name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="app['booking_date']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="app['state']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            </t>
+<!--        </t>-->
+    </template>
+
+</odoo>

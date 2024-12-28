@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_sale" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_draft']" position="after">
+                    <button name="%(first_project.action_wizard_report)d" type="action"
+                                    confirm="Are you sure to go to this page ?"
+                                    string="Best Seller Products" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

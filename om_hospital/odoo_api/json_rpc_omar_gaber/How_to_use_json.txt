@@ -1,0 +1,4 @@
+
+
+/home/ali/odoo/15e/odoo/addons/web/controllers/main.py
+using functions in odoo web module to link with json rpc  <<<< calL_kw method

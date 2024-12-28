@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="get_patient_controller" name="patient_controller">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center style="font-size:23px;color:#02A4BE">
+                        <h1>
+                            <strong>Hello From API Controller</strong>
+                        </h1>
+                    </center>
+                    <br></br>
+                    <table class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Appointments</th>
+                                <th>Phone no:</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <t t-foreach="myPatients" t-as="o">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.age"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.appointment_count"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.phone"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <center style="font-size:23px;color:#02A4BE">
+                        <h1>
+                            <strong>Create Patient</strong>
+                        </h1>
+                    </center>
+                    <div style="margin:10px;background-color:#02A4BE"><br/>
+                        <form method="post" action="/om_hospital/create_patients">
+                            <div class="row">
+                                <div class="col-1"  >
+                                    <label for="name" style="margin-left:5px">Name:</label><br/>
+                                    <label for="age" style="margin-left:5px;">Age :</label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" style="width:90%" id="name" name="name"/><br/>
+                                    <input type="number" style="width:90%" id="age" name="age"/>
+                                </div>
+                                <div class="col-1">
+                                    <label for="reference">Reference:</label><br/>
+                                    <label for="phone" style="padding-right:2px">Phone:</label>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" style="width:90%" id="reference" name="reference"/><br/>
+                                    <input type="number" style="width:90%" id="phone" name="phone"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <center style="padding-bottom:5px"><button type="submit" class="btn btn-primary">Create Patient</button></center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+
+    </template>
+
+</odoo>

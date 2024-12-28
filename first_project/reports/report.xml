@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <report id="report_sale_orders_wizard"
+                string="Sale Order Report"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="first_project.report_sale_order_wizard2"
+                file="first_project.report_sale_order_wizard2"/>
+
+
+        <template id="get_lang_temp">
+            <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name"
+                 t-att-data-oe-id="o and o.id" t-att-data-oe-lang="'en_US'">
+                <t t-raw="0"/>
+            </div>
+        </template>
+
+
+        <template id="report_sale_order_wizard2">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-call="first_project.report_sale_order_template_main"
+                    />
+                </t>
+            </t>
+        </template>
+
+        <template id="report_sale_order_template_main">
+            <t t-call="first_project.get_lang_temp">
+            </t>
+            <table>
+                <tr>
+                    <td>
+                        <h5>User Name</h5>
+                    </td>
+                    <td style="padding: 10px; background-color: white;">
+                        <strong>:</strong>
+                    </td>
+                    <td style="font-size:19px;">
+                        <t t-esc="user.name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h5>Creation Date</h5>
+                    </td>
+                    <td style="padding: 10px; background-color: white;">
+                        <strong>:</strong>
+                    </td>
+                    <td style="font-size:17px;">
+                        <t t-esc="form.get('create_date')"/>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <center style="text-align:center; font-size:32px; font-weight:bold">
+                <span>Best Seller Products</span>
+            </center>
+            <table class="table table-bordered mt32">
+                <thead>
+                    <tr>
+                        <th name="th_product_id" class="text-left">
+                            <span>Range</span>
+                        </th>
+                        <th name="th_product_id" class="text-left">
+                            <span>Product</span>
+                        </th>
+                        <th name="th_qty" class="text-left">
+                            <span>Number Of Orders</span>
+                        </th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <tr>
+                            <td>
+                                <span>The first Best seller Product</span>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[0]['name']"/>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[0]['quantity']"/>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>
+                                <span>The second Best seller Product</span>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[1]['name']"/>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[1]['quantity']"/>
+                            </td>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>
+                                <span>The third Best seller Product</span>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[2]['name']"/>
+                            </td>
+                            <td>
+                                <span t-esc="product_list2[2]['quantity']"/>
+                            </td>
+                        </tr>
+                    </tr>
+            </table>
+            <center style="text-align:center; font-size:32px; font-weight:bold">
+                <span>Products Sold During This Time Period</span>
+            </center>
+            <table class="table table-bordered mt32">
+                <thead>
+                    <tr>
+                        <th name="th_slno" class="text-left">
+                            <span>SNO.</span>
+                        </th>
+                        <th name="th_product_id" class="text-left">
+                            <span>Products</span>
+                        </th>
+                        <th name="th_qty" class="text-left">
+                            <span>Quantity</span>
+                        </th>
+                    </tr>
+                </thead>
+                <t t-set="product_count" t-value="0"/>
+                <t t-foreach="product_list2" t-as="prod">
+                    <t t-set="product_count" t-value="product_count + 1"/>
+                    <tr>
+                        <td>
+                            <span t-esc="prod_index + 1"/>
+                        </td>
+                        <td>
+                            <span t-esc="prod['name']"/>
+                        </td>
+                        <td>
+                            <span t-esc="prod['quantity']"/>
+                        </td>
+                    </tr>
+                </t>
+                <tr>
+                    <td>
+                        <strong>Total Products</strong>
+                    </td>
+                    <td colspan="3" style="text-align:center; font-weight:bold">
+                        <span t-esc="product_count"/>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <h5>Note That</h5>
+                    </td>
+                    <td style="padding: 10px; background-color: white;">
+                        <strong>:</strong>
+                    </td>
+                    <td style="font-size:20px;">
+                        <t t-esc="form.get('notes')"/>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <report id="report_sale_order_xls"
+                string="patient Card Excel"
+                model="sale.order.line"
+                report_type="xlsx"
+                name="first_project.report_patient_xls"
+                file="first_project.report_patient_xls"/>
+
+    </data>
+
+</odoo>
