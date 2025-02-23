@@ -9,9 +9,9 @@ class pientCardXlsx(models.AbstractModel):
     def generate_xlsx_report(self, workbook, data, lines):
         for obj in lines:
             sheet = workbook.add_worksheet('patient Card')
-            sheet.set_column('D:D', 20)
+            sheet.set_column('D:D', 20)  #Increase width of column
             sheet.set_column('C:C', 16)
-            # sheet.right_to_left()
+            sheet.right_to_left()
             format1 = workbook.add_format({'font_size': 16, 'align': 'center', 'bold': True,})
             format2 = workbook.add_format({'font_size': 16, 'align': 'vcenter', })
             # sheet.write(row, col, text or object, style)

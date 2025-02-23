@@ -14,6 +14,7 @@ class HospitalPatient(models.Model):
     date_of_birth = fields.Date(string="Date Of Birth")
     age = fields.Integer(string="Age", compute='_compute_age', inverse="_inverse_compute_age"
                          , search="_search_age", tracking=True)
+    age_2 = fields.Integer(string="Age2")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", tracking=True)
     reference = fields.Char(string="Reference")
     active = fields.Boolean(string="Active", default=True)
@@ -30,17 +31,17 @@ class HospitalPatient(models.Model):
     email = fields.Char(string="Email")
     website = fields.Char(string="URL")
 
-    # @api.depends('appointment_ids')
-    # def _compute_appointment_count(self):
-    #     # for rec in self:
-    #     # rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
-    #     appointments = self.env['hospital.appointment'].read_group([], fields=['patient_id'], groupby=['patient_id'])
-    #     for appointment in appointments:
-    #         patient_id = appointment['patient_id'][0]
-    #         patient_rec = self.browse(patient_id)
-    #         patient_rec.appointment_count = appointment['patient_id_count']
-    #         self -= patient_rec
-    #     self.appointment_count = 0
+    @api.depends('appointment_ids')
+    def _compute_appointment_count(self):
+        # for rec in self:
+        # rec.appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
+        # appointments = self.env['hospital.appointment'].read_group([], fields=['patient_id'], groupby=['patient_id'])
+        # for appointment in appointments:
+        #     patient_id = appointment['patient_id'][0]
+        #     patient_rec = self.browse(patient_id)
+        #     patient_rec.appointment_count = appointment['patient_id_count']
+        #     self -= patient_rec
+        self.appointment_count = 0
 
     # [{'patient_id_count': 2, 'patient_id': (1, < odoo.tools.func.lazy object at 0x7fe82317b300 >),'__domain': [('patient_id', '=', 1)]},
     #  {'patient_id_count': 1, 'patient_id': (2, < odoo.tools.func.lazy object at 0x7fe82317b2c0 >),'__domain': [('patient_id', '=', 2)]},

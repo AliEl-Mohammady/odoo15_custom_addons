@@ -30,6 +30,7 @@ class AppointementController(http.Controller):
         return request.render('om_hospital_portal_odoomates.appointment_thanks', {})
 
 
+#Inheritanc of controller in odoo
 class ShopInherit(WebsiteSale):
 
     def sitemap_shop(env, rule, qs):

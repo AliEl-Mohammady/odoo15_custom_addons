@@ -74,7 +74,8 @@ class CancelAppointmentWizard(models.TransientModel):
             appointment_list.append(vals)
         data = {
             'form': self.read()[0],
-            'appointment_list': appointment_list}
+            'appointment_list': appointment_list
+        }
 
         print("appointment_list", appointment_list)
         return self.env.ref('om_hospital.report_patients_wizard').report_action(self, data=data)

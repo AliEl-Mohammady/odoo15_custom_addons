@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.Chrome" t-inherit-mode="extension">
+        <xpath expr="//CashierName" position="before">
+            <button class="oe_primary m-5" style="margin:5px" t-on-click="reloadPage">Reload Page</button>
+        </xpath>
+    </t>
+
+</templates>

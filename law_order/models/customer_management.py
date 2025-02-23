@@ -94,7 +94,7 @@ class CustomersManagement(models.Model):
         #     print(rec)
         # mapped_lawyers = searchable_lawyers.mapped(lambda x: x.customers_id)
         mapped_lawyers = searchable_lawyers.mapped(lambda x: x.user.name)
-        sorted_lawyers = searchable_lawyers.sorted(lambda x: x.age)
+        sorted_lawyers = searchable_lawyers.sorted(lambda x: x.age,reversed=True)
         # sorted_lawyers = searchable_lawyers.sorted('description')
         print(mapped_lawyers)
         # for rec in mapped_lawyers:

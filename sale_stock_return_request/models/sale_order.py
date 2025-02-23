@@ -17,10 +17,7 @@ class SaleOrder(models.Model):
         return self.order_line.filtered(
             lambda x: not x.display_type
             and x.product_id.type != "service"
-            and float_compare(
-                x.qty_delivered, 0.0, precision_rounding=x.product_uom.rounding
-            )
-            > 0
+            and float_compare(x.qty_delivered, 0.0, precision_rounding=x.product_uom.rounding)> 0
         )
 
     def _compute_show_create_return_request(self):

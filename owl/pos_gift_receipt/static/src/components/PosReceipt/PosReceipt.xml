@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+    <t t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('top-content-center')]//h1" position="before">
+            <PosReceipt/>
+        </xpath>
+    </t>
+
+<!--    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">-->
+<!--        <xpath expr="//div[@class='pos-receipt']" position="replace">-->
+<!--            <div class="pos-receipt">-->
+<!--                <div>Hello </div>-->
+<!--&lt;!&ndash;                 Orderlines &ndash;&gt;-->
+<!--                <div class="orderlines">-->
+<!--                    <t t-call="point_of_sale.OrderLinesReceipt"/>-->
+<!--                </div>-->
+<!--                <div>By</div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--    </t>-->
+
+
+</templates>

@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+
+        <record id="group_pos_discount" model="res.groups">
+            <field name="name">Pos Discount group</field>
+        </record>
+
+    </data>
+</odoo>

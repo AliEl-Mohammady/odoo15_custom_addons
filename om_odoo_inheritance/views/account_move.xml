@@ -16,6 +16,7 @@
                 </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']/form//field[@name='product_id']" position="before">
                     <field name="line_number"/>
+<!--                    //We must add the line number to line_ids and invoice_line_ids-->
                 </xpath>
             </field>
         </record>

@@ -5,10 +5,10 @@
     'category': 'Hospital',
     'version': '1.0.0',
     'sequence': -10,
-    'author': 'Ali Mohamed Mahmoud',
+    'author': 'Ali El-Mohammady',
     'summary': "Hospital Management system",
     'description': "Hospital Management system",
-    'depends': ['mail', 'product','website'],
+    'depends': ['mail', 'product','website',"sale","sales_team","web_domain_field"],
     'data': [
         'security/ir.model.access.csv',
         # 'data/patient_tag_data.xml',

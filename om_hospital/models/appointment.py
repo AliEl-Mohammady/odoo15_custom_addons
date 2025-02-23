@@ -1,6 +1,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 import random
+import json
 
 
 class HospitalAppointment(models.Model):
@@ -32,7 +33,24 @@ class HospitalAppointment(models.Model):
     duration = fields.Integer(string="Duration")
     company_id = fields.Many2one('res.company', string="Company", default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
+    partner_id = fields.Many2one('res.partner')
+    order_id = fields.Many2one('sale.order')
+    order_id_domain = fields.Char(compute="_compute_order_id_domain")
     url = fields.Char(string="URL")
+
+    # @api.onchange('partner_id')
+    # def _onchange_doctor_id(self):
+    #     for rec in self :
+    #         if rec.partner_id:
+    #             return {'domain': {'order_id': [('partner_id', '=', rec.partner_id.id),('id', '>', 10),]}}
+    #         return {'domain': {'order_id': []}}
+
+    @api.depends('partner_id')
+    def _compute_order_id_domain(self):
+        for rec in self:
+            rec.order_id_domain = json.dumps(
+                [('partner_id', '=', rec.partner_id.id),('id', '>', 10)]
+            )
 
     def set_line_number(self):
         sl_no = 0

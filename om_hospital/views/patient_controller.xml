@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
+
     <template id="get_patient_controller" name="patient_controller">
         <t t-call="website.layout">
             <div class="oe_structure">
@@ -76,5 +77,21 @@
 
 
     </template>
+
+<!--    <record id="patient_page" model="website.page">-->
+<!--        <field name="url">/om_hospital/my_patients</field>-->
+<!--        <field name="is_published">True</field>-->
+<!--        <field name="view_id" ref="get_patient_controller"/>-->
+<!--        <field name="cache_time">0</field>-->
+<!--        <field name="track">True</field>-->
+<!--    </record>-->
+
+<!--    <record id="menu_appointment" model="website.menu">-->
+<!--        <field name="name">Ali Patients</field>-->
+<!--        <field name="url">/om_hospital/my_patients</field>-->
+<!--        <field name="page_id" ref="patient_page"/>-->
+<!--        <field name="parent_id" ref="website.main_menu"/>-->
+<!--        <field name="sequence" type="int">40</field>-->
+<!--    </record>-->
 
 </odoo>

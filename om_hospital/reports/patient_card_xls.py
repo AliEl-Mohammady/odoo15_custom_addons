@@ -3,6 +3,7 @@ from odoo import models
 #
 # class pientCardXlsx(models.AbstractModel):
 #     _name = 'report.om_hospital.report_patient_xls'
+##     _name = 'report.module_name.report_name'
 #     _inherit = 'report.report_xlsx.abstract'
 #
 #

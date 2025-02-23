@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="owl_inherit_views.PartnerOrderSummery" owl="1">
+        <div class="card text-center mx-auto mt-3" style="max-width: 300px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                <!-- Partner Image -->
+                <img t-attf-src="data:image/jpg;base64,{{partner.image_256}}" alt="Partner Image"
+                     class="card-img-top rounded-circle mx-auto mt-3"
+                     style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #007bff;" />
+
+                <div class="card-body">
+                    <!-- Partner Name -->
+                    <h5 class="card-title" style="font-size: 18px; font-weight: bold; color: #333;">
+                        <t t-esc="partner.name" />
+                    </h5>
+
+                    <!-- Sale Order Count -->
+                    <p class="card-text" style="font-size: 16px; color: #555;">
+                        Sale Orders:
+                        <span t-esc="partner.sale_order_count" />
+                    </p>
+                </div>
+            </div>
+<!--        <div class="center" style="width:100%;border:1px solid black;text-align:center;margin:12px 0;padding:10px 10px">-->
+<!--            <h1>Hell <t t-esc="partner.name"/> </h1>-->
+<!--            <Dropdown togglerClass="'o_menu_item dropdown-item'">-->
+<!--                <t t-set-slot="toggler">-->
+<!--                    Drop Menus to choose-->
+<!--                </t>-->
+<!--                <DropdownItem class="o_item_option dropdown-item" t-on-dropdown-item-selected="selectionItem1">Menu Item 1 <t t-esc="option.description"/> </DropdownItem>-->
+<!--                <DropdownItem class="o_item_option dropdown-item" t-on-dropdown-item-selected="selectionItem1">Menu Item 2 <t t-esc="option.description"/> </DropdownItem>-->
+<!--            </Dropdown>-->
+<!--        </div>-->
+    </t>
+</templates>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+
+        <record id="view_pos_config_form_inherit_a" model="ir.ui.view">
+            <field name="name">pos.config.inherit</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <div id="product_prices" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box" title="Discount Password.">
+                        <div class="o_setting_right_pane">
+                            <label for="discount_passcode" string="Discount Password"/>
+                            <div class="text-muted">
+                                 Password to get discount for some product
+                            </div>
+                            <div class="content-group mt16">
+                                <div class="row mt8">
+                                    <field name="discount_passcode" style="border:1px solid black;margin-left:20px;padding-left:5px" nolabel="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

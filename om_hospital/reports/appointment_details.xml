@@ -72,6 +72,7 @@
                             <tr>
                                 <td>
                                     <span t-esc="appointment_count"/>
+                                    <span t-esc="app_index +1"/>
                                 </td>
                                 <td>
                                     <span t-esc="app['patient_id']"/>
